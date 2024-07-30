@@ -104,6 +104,10 @@ div.transactions {
 
 }
 
+div.transactions:first-child{
+  border-top: 0;
+}
+
 div.transaction:first-child{
   border-top: 0;
 }

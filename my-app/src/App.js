@@ -26,7 +26,7 @@ function App() {
                 <input type='text'
                        placeholder={'description'}
                         value={description}
-                        onChange={ev => setDescription(ev.target.value)}/>/>
+                        onChange={ev => setDescription(ev.target.value)}/>
             </div>
             <button type='submit'>Add new transaction</button>
         </form>
