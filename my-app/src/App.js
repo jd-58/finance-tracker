@@ -6,10 +6,13 @@ function App() {
     const [name, setName] = useState('');
     const [datetime, setDatetime] = useState('');
     const [description, setDescription] = useState('');
+    function addTransaction() {
+
+    }
   return (
     <main>
       <h1>$400<span>.00</span></h1>
-        <form>
+        <form onSubmit={addTransaction}>
             <div className='basicInfo'>
                 <input type='text'
                        placeholder={'+200 new TV'}
