@@ -2,12 +2,24 @@ import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
 
+
 function App() {
     const [name, setName] = useState('');
     const [datetime, setDatetime] = useState('');
     const [description, setDescription] = useState('');
-    function addTransaction() {
-
+    function addTransaction(ev) {
+        ev.preventDefault();
+        const url = process.env.REACT_APP_API_URL+'/transaction';
+        console.log(url);
+        fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name, datetime, description})
+        }).then(response => {
+            response.json().then(json => {
+                console.log('result', json)
+            });
+        });
     }
   return (
     <main>
