@@ -5,4 +5,4 @@ app.get('/api/test', (req, res) => {
     res.json('test ok')
 });
 
-app.listen(3000);
+app.listen(4000);
