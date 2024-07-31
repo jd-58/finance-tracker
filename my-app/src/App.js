@@ -10,13 +10,20 @@ function App() {
     function addTransaction(ev) {
         ev.preventDefault();
         const url = process.env.REACT_APP_API_URL+'/transaction';
+        const price = name.split(' ')[0];
         console.log(url);
         fetch(url, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({name, datetime, description})
+            body: JSON.stringify({name:name.substring(price.length+1),
+                price,
+                datetime,
+                description})
         }).then(response => {
             response.json().then(json => {
+                setName('')
+                setDescription('')
+                setDatetime('')
                 console.log('result', json)
             });
         });
