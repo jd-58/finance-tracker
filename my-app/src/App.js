@@ -9,6 +9,8 @@ function App() {
     const [datetime, setDatetime] = useState('');
     const [description, setDescription] = useState('');
     const [transactions, setTransactions] = useState([]);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     useEffect(() => {
     getTransactions().then(setTransactions);
     }, []);
@@ -29,12 +31,15 @@ function App() {
             body: JSON.stringify({name:name.substring(price.length+1),
                 price,
                 datetime,
-                description})
+                description,
+                username,})
         }).then(response => {
             response.json().then(json => {
                 setName('')
                 setDescription('')
                 setDatetime('')
+                setUsername('')
+                setPassword('')
                 console.log('result', json)
             });
         });
@@ -52,19 +57,29 @@ function App() {
       <h1>${balance}<span>{fraction}</span></h1>
         <form onSubmit={addTransaction}>
             <div className='basicInfo'>
+                <div className='username-password'>
+                <input type='text'
+                       placeholder={'Username'}
+                       value={username}
+                       onChange={ev => setUsername(ev.target.value)}/>
+                <input type='text'
+                       placeholder={'Password'}
+                       value={password}
+                       onChange={ev => setPassword(ev.target.value)}/>
+                </div>
                 <input type='text'
                        placeholder={'+200 new TV'}
-                        value={name}
-                        onChange={ev => setName(ev.target.value)}/>
+                       value={name}
+                       onChange={ev => setName(ev.target.value)}/>
                 <input type='datetime-local'
-                        value={datetime}
-                        onChange={ev => setDatetime(ev.target.value)}/>
+                       value={datetime}
+                       onChange={ev => setDatetime(ev.target.value)}/>
             </div>
             <div className='description'>
                 <input type='text'
                        placeholder={'description'}
-                        value={description}
-                        onChange={ev => setDescription(ev.target.value)}/>
+                       value={description}
+                       onChange={ev => setDescription(ev.target.value)}/>
             </div>
             <button type='submit'>Add new transaction</button>
 

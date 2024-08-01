@@ -13,10 +13,10 @@ app.get('/api/test', (req, res) => {
 });
 
 app.post('/api/transaction', async (req, res) => {
-    const { name, price, description, datetime } = req.body; // Include price here
+    const { name, username, price, description, datetime } = req.body; // Include price here
     try {
         await mongoose.connect(process.env.MONGO_URL);
-        const transaction = await Transaction.create({ name, price, description, datetime });
+        const transaction = await Transaction.create({name, username, price, description, datetime});
         res.json(transaction);
     } catch (error) {
         console.error('Error creating transaction:', error);
