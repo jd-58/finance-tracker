@@ -25,9 +25,15 @@ app.post('/api/transaction', async (req, res) => {
 });
 
 app.get('/api/transactions', async (req, res) => {
-    await mongoose.connect(process.env.MONGO_URL);
-    const transactions = await Transaction.find();
-    res.json(transactions);
+    const { username, password } = req.query; // Get username and password from query parameters
+    try {
+        await mongoose.connect(process.env.MONGO_URL);
+        const transactions = await Transaction.find({ username, password }); // Filter transactions by username and password
+        res.json(transactions);
+    } catch (error) {
+        console.error('Error fetching transactions:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 app.listen(4040, () => {

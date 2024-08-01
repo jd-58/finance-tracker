@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import {useEffect, useState} from 'react';
 
@@ -11,12 +11,13 @@ function App() {
     const [transactions, setTransactions] = useState([]);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
     useEffect(() => {
     getTransactions().then(setTransactions);
     }, []);
 
     async function getTransactions() {
-        const url = process.env.REACT_APP_API_URL+'/transactions';
+        const url = `${process.env.REACT_APP_API_URL}/transactions?username=${username}&password=${password}`;
         const response = await fetch(url)
         return await response.json();
     }
@@ -45,6 +46,11 @@ function App() {
             });
         });
     }
+
+    function fetchUserTransactions() {
+        getTransactions().then(setTransactions);
+    }
+
     let balance = 0;
     transactions.forEach(transaction => {
         balance += transaction.price;
@@ -67,6 +73,7 @@ function App() {
                        value={password}
                        onChange={ev => setPassword(ev.target.value)}/>
             </div>
+            <button type='button' onClick={fetchUserTransactions}>Fetch User Transactions</button> {/* Add button to fetch transactions */}
             <div className='basicInfo'>
                 <input type='text'
                        placeholder={'+200 new TV'}
