@@ -43,6 +43,7 @@ function App() {
                 setUsername('')
                 setPassword('')
                 console.log('result', json)
+                getTransactions().then(setTransactions);
             });
         });
     }
