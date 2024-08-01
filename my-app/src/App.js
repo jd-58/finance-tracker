@@ -40,8 +40,8 @@ function App() {
                 setName('')
                 setDescription('')
                 setDatetime('')
-                setUsername('')
-                setPassword('')
+                // setUsername('')
+                // setPassword('')
                 console.log('result', json)
                 getTransactions().then(setTransactions);
             });
