@@ -2,7 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import {useEffect, useState} from 'react';
 
-
+// npm start to run the app in the /my-app directory
+// node index.js to run the server in the /my-app/api directory
 function App() {
     const [name, setName] = useState('');
     const [datetime, setDatetime] = useState('');
