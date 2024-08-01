@@ -32,7 +32,8 @@ function App() {
                 price,
                 datetime,
                 description,
-                username,})
+                username,
+                password})
         }).then(response => {
             response.json().then(json => {
                 setName('')
@@ -56,8 +57,7 @@ function App() {
     <main>
       <h1>${balance}<span>{fraction}</span></h1>
         <form onSubmit={addTransaction}>
-            <div className='basicInfo'>
-                <div className='username-password'>
+            <div className='username-password'>
                 <input type='text'
                        placeholder={'Username'}
                        value={username}
@@ -66,7 +66,8 @@ function App() {
                        placeholder={'Password'}
                        value={password}
                        onChange={ev => setPassword(ev.target.value)}/>
-                </div>
+            </div>
+            <div className='basicInfo'>
                 <input type='text'
                        placeholder={'+200 new TV'}
                        value={name}

@@ -88,6 +88,7 @@ form div.basicInfo {
   display: flex;
   gap: 5px;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 form button {
@@ -110,6 +111,15 @@ div.transactions {
   justify-content: space-between;
   border-top: 1px solid #30313d;
 
+}
+
+.username-password {
+  display: flex;
+  justify-content: space-between;
+}
+
+.username-password input {
+  width: 48%;
 }
 
 div.transactions:first-child{
