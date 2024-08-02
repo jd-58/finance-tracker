@@ -70,29 +70,41 @@ function App() {
     <main>
       <h1>${balance}<span>{fraction}</span></h1>
         <form onSubmit={addTransaction}>
-            <div className='username-password'>
-                <input type='text'
-                       placeholder={'Username'}
+            <div className='username-password-label'>
+                <label class='info-label' id='username-label' htmlFor='username'>Username</label>
+                <label class='info-label' id='password-label' htmlFor='password'>Password</label>
+            </div>
+            <div className= 'username-password'>
+                <input id='username'
+                       type='text'
                        value={username}
                        onChange={ev => setUsername(ev.target.value)}/>
-                <input type='text'
-                       placeholder={'Password'}
+                <input id='password'
+                       type='text'
                        value={password}
                        onChange={ev => setPassword(ev.target.value)}/>
             </div>
             <button type='button' onClick={fetchUserTransactions}>Fetch User Transactions</button> {/* Add button to fetch transactions */}
+            <div className='basicInfo-label'>
+                <label class='info-label' id='value-label' htmlFor='value'>Value</label>
+                <label class='info-label' id='date-label' htmlFor='date'>Date</label>
+            </div>
             <div className='basicInfo'>
-                <input type='text'
-                       placeholder={'+200 new TV'}
+                <input id='value'
+                       type='text'
                        value={name}
                        onChange={ev => setName(ev.target.value)}/>
-                <input type='datetime-local'
+                <input id='date'
+                       type='datetime-local'
                        value={datetime}
                        onChange={ev => setDatetime(ev.target.value)}/>
             </div>
-            <div className='description'>
-                <input type='text'
-                       placeholder={'description'}
+            <div class='description-label'>
+                <label className='info-label' id='description-label' htmlFor='description'>Description</label>
+            </div>
+            <div class='description'>
+                <input id='description'
+                       type='text'
                        value={description}
                        onChange={ev => setDescription(ev.target.value)}/>
             </div>
