@@ -7,7 +7,7 @@ const TransactionSchema = new Schema({
     username: {type: String, required:true},
     price: {type: Number, required:true},
     description: {type: String, required:true},
-    datetime: {type: Date, required:true},
+    datetime: {type: String, required:true},
     password: {type: String, required:true}
 });
 
