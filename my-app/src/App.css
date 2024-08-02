@@ -72,22 +72,21 @@ form {
 }
 
 form input {
-  width: 100%;
+
   background-color: transparent;
   color: #ddd;
   border: 2px solid #30313d;
   padding: 2px 5px;
   border-radius: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 form input[type='datetime-local']{
   color: #777;
 }
 
-form input {
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
+
 
 form div.basicInfo {
   display: flex;
@@ -117,6 +116,7 @@ div.transactions {
 
 }
 
+
 .username-password {
   display: flex;
   justify-content: space-between;
@@ -133,12 +133,25 @@ div.transactions {
   margin-left: 32%;
 }
 
-#date-label {
-  margin-left: 15%;
+#title-label {
+  margin-left: 43%;
 }
 
 .username-password input {
   width: 48%;
+}
+
+#price-and-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+#price-and-title input {
+  width: 48%;
+}
+
+#date, #description {
+  width: 100%;
 }
 
 div.transactions:first-child{

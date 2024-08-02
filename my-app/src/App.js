@@ -15,6 +15,7 @@ function App() {
     const [transactions, setTransactions] = useState([]);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [price, setPrice] = useState('');
     const [isFetching, setIsFetching] = useState(false); // State to track if fetch is in progress
 
     async function getTransactions() {
@@ -25,12 +26,13 @@ function App() {
     function addTransaction(ev) {
         ev.preventDefault();
         const url = process.env.REACT_APP_API_URL+'/transaction';
-        const price = name.split(' ')[0];
+
         console.log(url);
         fetch(url, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({name:name.substring(price.length+1),
+            body: JSON.stringify({
+                name,
                 price,
                 datetime,
                 description,
@@ -41,6 +43,7 @@ function App() {
                 setName('')
                 setDescription('')
                 setDatetime('')
+                setPrice('')
                 // setUsername('')
                 // setPassword('')
                 console.log('result', json)
@@ -71,10 +74,10 @@ function App() {
       <h1>${balance}<span>{fraction}</span></h1>
         <form onSubmit={addTransaction}>
             <div className='username-password-label'>
-                <label class='info-label' id='username-label' htmlFor='username'>Username</label>
-                <label class='info-label' id='password-label' htmlFor='password'>Password</label>
+                <label className='info-label' id='username-label' htmlFor='username'>Username</label>
+                <label className='info-label' id='password-label' htmlFor='password'>Password</label>
             </div>
-            <div className= 'username-password'>
+            <div className='username-password'>
                 <input id='username'
                        type='text'
                        value={username}
@@ -84,16 +87,24 @@ function App() {
                        value={password}
                        onChange={ev => setPassword(ev.target.value)}/>
             </div>
-            <button type='button' onClick={fetchUserTransactions}>Fetch User Transactions</button> {/* Add button to fetch transactions */}
+            <button type='button' onClick={fetchUserTransactions}>Fetch User Transactions</button>
+            {/* Add button to fetch transactions */}
             <div className='basicInfo-label'>
-                <label class='info-label' id='value-label' htmlFor='value'>Value</label>
-                <label class='info-label' id='date-label' htmlFor='date'>Date</label>
+                <label className='info-label' id='value-label' htmlFor='value'>Price</label>
+                <label className='info-label' id='title-label' htmlFor='value'>Title</label>
             </div>
-            <div className='basicInfo'>
-                <input id='value'
+            <div className='basicInfo' id='price-and-title'>
+                <input id='price'
+                       type='text'
+                       value={price}
+                       onChange={ev => setPrice(ev.target.value)}/>
+                <input id='transaction-title'
                        type='text'
                        value={name}
                        onChange={ev => setName(ev.target.value)}/>
+            </div>
+            <label className='info-label' id='date-label' htmlFor='date'>Date</label>
+            <div className='basicInfo' id='date-input'>
                 <input id='date'
                        type='datetime-local'
                        value={datetime}
