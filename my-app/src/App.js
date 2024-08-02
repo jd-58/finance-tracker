@@ -11,8 +11,7 @@ function App() {
     const [transactions, setTransactions] = useState([]);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
-
+    const [isFetching, setIsFetching] = useState(false); // State to track if fetch is in progress
 
     async function getTransactions() {
         const url = `${process.env.REACT_APP_API_URL}/transactions?username=${username}&password=${password}`;
@@ -47,7 +46,12 @@ function App() {
     }
 
     function fetchUserTransactions() {
-        getTransactions().then(setTransactions);
+        if (isFetching) return; // Prevent multiple fetches
+        setIsFetching(true); // Set fetching state to true
+        getTransactions().then(transactions => {
+            setTransactions(transactions);
+            setIsFetching(false); // Reset fetching state
+        });
     }
 
     let balance = 0;
