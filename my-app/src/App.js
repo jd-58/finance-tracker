@@ -5,10 +5,10 @@ import {useState} from 'react';
 // npm start to run the app in the /my-app directory
 // node index.js to run the server in the /my-app/api directory
 
-
-// TO-DO: add a "clear transactions" button (make it ask the user if they are sure)
 // TO-DO: make date show correctly in the transaction list
 // TO-DO: add a button that changes between adding or subtracting money
+// TO-DO: add a "clear transactions" button (make it ask the user if they are sure)
+// TO-DO: make overall styling nice and more consistent with my webpage coloring (dark blue)
 function App() {
     const [name, setName] = useState('');
     const [datetime, setDatetime] = useState('');
