@@ -4,6 +4,10 @@ import {useState} from 'react';
 
 // npm start to run the app in the /my-app directory
 // node index.js to run the server in the /my-app/api directory
+
+// TO-DO: add labels above each input field
+// TO-DO: separate the price and title into separate input fields
+// TO-DO: update the datetime input field to use a date picker
 function App() {
     const [name, setName] = useState('');
     const [datetime, setDatetime] = useState('');
