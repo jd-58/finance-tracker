@@ -1,6 +1,6 @@
 
 import './App.css';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 // npm start to run the app in the /my-app directory
 // node index.js to run the server in the /my-app/api directory
@@ -12,9 +12,7 @@ function App() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    useEffect(() => {
-    getTransactions().then(setTransactions);
-    }, []);
+
 
     async function getTransactions() {
         const url = `${process.env.REACT_APP_API_URL}/transactions?username=${username}&password=${password}`;
