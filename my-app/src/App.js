@@ -1,4 +1,4 @@
-
+import DOMPurify from 'dompurify';
 import './App.css';
 import {useState} from 'react';
 
@@ -24,8 +24,24 @@ function App() {
         const response = await fetch(url)
         return await response.json();
     }
+
+    function sanitizeInput(input) {
+    return DOMPurify.sanitize(input);
+}
     function addTransaction(ev) {
         ev.preventDefault();
+        if (isNaN(price) || price.trim() === '') {
+            alert('Please enter a valid number for the value.');
+            return;
+        }
+        const sanitizedData = {
+        name: sanitizeInput(name),
+        price: sanitizeInput(price),
+        datetime: sanitizeInput(datetime),
+        description: sanitizeInput(description),
+        username: sanitizeInput(username),
+        password: sanitizeInput(password)
+    };
         const url = process.env.REACT_APP_API_URL+'/transaction';
 
         console.log(url);
@@ -59,6 +75,19 @@ function App() {
         getTransactions().then(transactions => {
             setTransactions(transactions);
             setIsFetching(false); // Reset fetching state
+        });
+    }
+
+    function clearTransactions() {
+        const url = `${process.env.REACT_APP_API_URL}/clear-transactions`;
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        }).then(response => {
+            response.json().then(() => {
+                getTransactions().then(setTransactions);
+            });
         });
     }
 
@@ -117,7 +146,8 @@ function App() {
                        onChange={ev => setDatetime(ev.target.value)}/>
             </div>
             <div id='description-label'>
-                <label className='info-label' id='description-label' htmlFor='description'>Transaction Description</label>
+                <label className='info-label' id='description-label' htmlFor='description'>Transaction
+                    Description</label>
             </div>
             <div id='description'>
                 <input id='description'
@@ -126,10 +156,12 @@ function App() {
                        onChange={ev => setDescription(ev.target.value)}/>
             </div>
             <button type='submit'>Add new transaction</button>
-
+            <button id='clear-transactions' type='button' onClick={clearTransactions}>Clear Transactions</button>
         </form>
+
+
         <div className="transactionsHolder">
-            {transactions.length > 0 && transactions.map(transactions => (
+        {transactions.length > 0 && transactions.map(transactions => (
                 <div>
                     <div className="transactions">
                         <div className="left">
@@ -137,14 +169,14 @@ function App() {
                             <div className="description">{transactions.description}</div>
                         </div>
                         <div className="right">
-                            <div className={"price-" + (transactions.price < 0 ?'red':'green')}>
+                            <div className={"price-" + (transactions.price < 0 ? 'red' : 'green')}>
                                 {transactions.price < 0 ? `-$${Math.abs(transactions.price)}` : `$${transactions.price}`}
                             </div>
-                            <div className="datetime">{transactions.datetime}</div>
+                            <div className="datetime">{new Date(transactions.datetime).toLocaleDateString()}</div>
                         </div>
                     </div>
                 </div>
-            ))}
+        ))}
 
 
         </div>

@@ -8,7 +8,8 @@ const TransactionSchema = new Schema({
     price: {type: Number, required:true},
     description: {type: String, required:true},
     datetime: {type: String, required:true},
-    password: {type: String, required:true}
+    password: {type: String, required:true},
+    isCleared: {type: String, requried:true}
 });
 
 const TransactionModel = model('Transaction', TransactionSchema);
