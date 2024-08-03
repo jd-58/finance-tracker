@@ -6,9 +6,6 @@ import {useState} from 'react';
 // node index.js to run the server in the /my-app/api directory
 
 
-// TO-DO: add a button that changes between adding or subtracting money
-// TO-DO: add a "clear transactions" button (make it ask the user if they are sure)
-// TO-DO: make overall styling nice and more consistent with my webpage coloring (dark blue)
 function App() {
     const [name, setName] = useState('');
     const [datetime, setDatetime] = useState('');
@@ -79,6 +76,7 @@ function App() {
     }
 
     function clearTransactions() {
+        if (window.confirm('Are you sure you want to clear all transactions?')) {
         const url = `${process.env.REACT_APP_API_URL}/clear-transactions`;
         fetch(url, {
             method: 'POST',
@@ -90,6 +88,7 @@ function App() {
             });
         });
     }
+}
 
     let balance = 0;
     transactions.forEach(transaction => {
