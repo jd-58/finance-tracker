@@ -5,7 +5,7 @@ import {useState} from 'react';
 // npm start to run the app in the /my-app directory
 // node index.js to run the server in the /my-app/api directory
 
-// TO-DO: make date show correctly in the transaction list
+
 // TO-DO: add a button that changes between adding or subtracting money
 // TO-DO: add a "clear transactions" button (make it ask the user if they are sure)
 // TO-DO: make overall styling nice and more consistent with my webpage coloring (dark blue)
@@ -74,6 +74,11 @@ function App() {
     <main>
       <h1>${balance}<span>{fraction}</span></h1>
         <form onSubmit={addTransaction}>
+            <div id='instructions'>
+                <label id='instruction-label'>
+                    Enter a username and password, and then fill out the rest of the form to create a new transaction.
+                </label>
+            </div>
             <div className='username-password-label'>
                 <label className='info-label' id='username-label' htmlFor='username'>Username</label>
                 <label className='info-label' id='password-label' htmlFor='password'>Password</label>
@@ -88,7 +93,7 @@ function App() {
                        value={password}
                        onChange={ev => setPassword(ev.target.value)}/>
             </div>
-            <button type='button' onClick={fetchUserTransactions}>Fetch User Transactions</button>
+            <button type='button' onClick={fetchUserTransactions}>Show Transaction History</button>
             {/* Add button to fetch transactions */}
             <div className='basicInfo-label'>
                 <label className='info-label' id='value-label' htmlFor='value'>Value</label>
@@ -111,10 +116,10 @@ function App() {
                        value={datetime}
                        onChange={ev => setDatetime(ev.target.value)}/>
             </div>
-            <div class='description-label'>
+            <div id='description-label'>
                 <label className='info-label' id='description-label' htmlFor='description'>Transaction Description</label>
             </div>
-            <div class='description'>
+            <div id='description'>
                 <input id='description'
                        type='text'
                        value={description}
@@ -128,12 +133,12 @@ function App() {
                 <div>
                     <div className="transactions">
                         <div className="left">
-                            <div className="name">{transactions.name}</div>
+                            <div id="name-left">{transactions.name}</div>
                             <div className="description">{transactions.description}</div>
                         </div>
                         <div className="right">
-                            <div className={"price-" + (transactions.price<0?'red':'green')}>
-                                {transactions.price}
+                            <div className={"price-" + (transactions.price < 0 ?'red':'green')}>
+                                {transactions.price < 0 ? `-$${Math.abs(transactions.price)}` : `$${transactions.price}`}
                             </div>
                             <div className="datetime">{transactions.datetime}</div>
                         </div>
