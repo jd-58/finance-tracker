@@ -133,7 +133,7 @@ div.transactions {
 }
 
 #title-label {
-  margin-left: 43%;
+  margin-left: 42%;
 }
 
 .username-password input {
@@ -143,6 +143,7 @@ div.transactions {
 #price-and-title {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1vh;
 }
 
 #price-and-title input {
@@ -185,4 +186,8 @@ div.right {
 div.transactions div.datetime {
   font-size: 0.7rem;
   color: #aaa;
+}
+
+#date-input {
+  margin-bottom: 1vh;
 }

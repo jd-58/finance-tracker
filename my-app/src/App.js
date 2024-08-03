@@ -91,7 +91,7 @@ function App() {
             <button type='button' onClick={fetchUserTransactions}>Fetch User Transactions</button>
             {/* Add button to fetch transactions */}
             <div className='basicInfo-label'>
-                <label className='info-label' id='value-label' htmlFor='value'>Price</label>
+                <label className='info-label' id='value-label' htmlFor='value'>Value</label>
                 <label className='info-label' id='title-label' htmlFor='value'>Transaction Title</label>
             </div>
             <div className='basicInfo' id='price-and-title'>
@@ -112,7 +112,7 @@ function App() {
                        onChange={ev => setDatetime(ev.target.value)}/>
             </div>
             <div class='description-label'>
-                <label className='info-label' id='description-label' htmlFor='description'>Description</label>
+                <label className='info-label' id='description-label' htmlFor='description'>Transaction Description</label>
             </div>
             <div class='description'>
                 <input id='description'
@@ -135,7 +135,7 @@ function App() {
                             <div className={"price-" + (transactions.price<0?'red':'green')}>
                                 {transactions.price}
                             </div>
-                            <div className="datetime">2022-12-18 15:45</div>
+                            <div className="datetime">{transactions.datetime}</div>
                         </div>
                     </div>
                 </div>
