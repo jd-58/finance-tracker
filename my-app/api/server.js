@@ -5,6 +5,12 @@ const mongoose = require('mongoose');
 const { body, validationResult } = require('express-validator');
 require('dotenv').config();
 const app = express();
+const MongoClient = require("mongodb").MongoClient;
+
+const client = new MongoClient(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.use(cors());
 app.use(express.json());
