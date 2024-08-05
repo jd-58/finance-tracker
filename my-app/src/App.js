@@ -91,10 +91,16 @@ function App() {
 }
 
     let balance = 0;
+    console.log('Type of transactions:', typeof transactions);
+console.log('Value of transactions:', transactions);
+
+if (Array.isArray(transactions)) {
     transactions.forEach(transaction => {
         balance += transaction.price;
     });
-
+} else {
+    console.error('transactions is not an array');
+}
     balance = balance.toFixed(2);
     const fraction = balance.split('.')[1];
     balance = balance.split('.')[0]

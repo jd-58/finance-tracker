@@ -52,6 +52,9 @@ app.post('/api/clear-transactions', async (req, res) => {
 app.get('/api/transactions', async (req, res) => {
     const { username, password } = req.query; // Get username and password from query parameters
     try {
+        if (!process.env.MONGO_URL) {
+            throw new Error('MONGO_URL is not defined in the environment variables');
+        }
         await mongoose.connect(process.env.MONGO_URL);
         const transactions = await Transaction.find({ username, password, isCleared: 'no' });
         // Filter transactions by username and password, and making sure isCleared is 'no'
