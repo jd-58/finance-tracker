@@ -1,6 +1,7 @@
 import DOMPurify from 'dompurify';
 import './App.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import axios from 'axios';
 
 // npm start to run the app in the /my-app directory
 // node index.js to run the server in the /my-app/api directory
