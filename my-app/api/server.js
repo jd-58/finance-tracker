@@ -12,7 +12,10 @@ const client = new MongoClient(process.env.MONGO_URL, {
   useUnifiedTopology: true,
 });
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://www.jacob-deaton.com'
+    }
+));
 app.use(express.json());
 
 app.get('/api/test', (req, res) => {
